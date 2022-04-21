@@ -9,17 +9,23 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class AppConfig {
 
-    // 역할이 잘 드러나는 명칭, 역할과 구현클래스가 한눈에 들어온다.
+    @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     }
 
-    private MemberRepository memberRepository() { return new MemoryMemberRepository(); }
+    @Bean
+    public MemberRepository memberRepository() { return new MemoryMemberRepository(); }
 
+    @Bean
     public OrderService orderService() { return new OrderServiceImpl(memberRepository(), disCountPolicy()); }
 
+    @Bean
     public DisCountPolicy disCountPolicy() { return new RateDiscountPolicy(); }  // FixDiscountPolicy
 }
