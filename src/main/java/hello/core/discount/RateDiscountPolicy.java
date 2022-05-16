@@ -1,8 +1,12 @@
 package hello.core.discount;
 
+import hello.core.annotation.MainDisCountPolicy;
 import hello.core.member.Grade;
 import hello.core.member.Member;
+import org.springframework.stereotype.Component;
 
+@Component
+@MainDisCountPolicy
 public class RateDiscountPolicy implements DisCountPolicy{
     private int discountPercent = 10;
 
