@@ -1,0 +1,23 @@
+package hello.core.web;
+
+import hello.core.common.MyLogger;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+//@RequiredArgsConstructor
+public class LogDemoService {
+
+    private final ObjectProvider<MyLogger> myLoggerProvider;
+
+    public LogDemoService(ObjectProvider<MyLogger> myLoggerProvider) {
+        this.myLoggerProvider = myLoggerProvider;
+    }
+
+    public void logic(String testID) {
+        MyLogger myLogger = myLoggerProvider.getObject();
+        myLogger.log("service id = " + testID);
+    }
+}
